@@ -1,7 +1,14 @@
 'use strict'
 
-var React = require('react')
-var Hello = require('./components/Hello')
+var React = require('react');
+var ChatBox = require('./components/ChatBox');
 
-React.render(<Hello />, document.getElementById('app'))
+var state = {
+  messages: [
+    { author: "Justin", text: "j's message" },
+    { author: "ray", text: "r's message" }
+  ]
+};
+
+React.render(<ChatBox/>, document.getElementById('app'));
 
