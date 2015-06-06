@@ -4,12 +4,17 @@
   "description": "simple chat app",
   "main": "index.js",
   "dependencies": {
+    "immstruct": "^1.4.1",
+    "omniscient": "^3.1.0",
     "react": "^0.13.3"
   },
   "devDependencies": {
     "babel-core": "^5.5.3",
     "babel-loader": "^5.1.4",
+    "chai": "^3.0.0",
     "jsx-loader": "^0.13.2",
+    "karma": "^0.12.36",
+    "mocha": "^2.2.5",
     "react-hot-loader": "^1.2.7",
     "webpack": "^1.9.10",
     "webpack-dev-server": "^1.9.0"
