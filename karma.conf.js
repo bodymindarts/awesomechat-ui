@@ -35,8 +35,16 @@ module.exports = function(config) {
         loaders: [
           { test: /\.jsx?$/,
             loaders: ['react-hot', 'babel']
+          },
+          {
+            test: /\.json$/,
+            loaders: ['json']
           }
         ]
+      },
+      node: {
+        fs: 'empty',
+        child_process: 'empty'
       }
     },
 
