@@ -1,8 +1,8 @@
 {
-  "name": "greatchat",
+  "name": "awsomechat",
   "version": "0.1.0",
   "description": "simple chat app",
-  "main": "index.js",
+  "main": "app/main.js",
   "dependencies": {
     "immstruct": "^1.4.1",
     "omniscient": "^3.1.0",
@@ -17,8 +17,16 @@
     "eslint-plugin-react": "^2.5.0",
     "jsx-loader": "^0.13.2",
     "karma": "^0.12.36",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.1.10",
+    "karma-mocha-reporter": "^1.0.2",
+    "karma-sinon": "^1.0.4",
+    "karma-webpack": "^1.5.1",
     "mocha": "^2.2.5",
     "react-hot-loader": "^1.2.7",
+    "sinon": "^1.14.1",
     "webpack": "^1.9.10",
     "webpack-dev-server": "^1.9.0"
   },
