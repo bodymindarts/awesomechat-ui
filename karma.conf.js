@@ -40,16 +40,6 @@ module.exports = function(config) {
       }
     },
 
-    plugins: [
-      require('karma-mocha'),
-      require('karma-chai'),
-      require('karma-sinon'),
-      require('karma-chrome-launcher'),
-      require('karma-firefox-launcher'),
-      require('karma-mocha-reporter'),
-      require('karma-webpack')
-    ],
-
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
