@@ -8,7 +8,7 @@ describe('MessageFactory', function() {
     var clock = sinon.useFakeTimers(timeStamp.getTime());
     var message = MessageFactory.pending('userName', 'text');
 
-    expect(message.id).to.equal(message.score + 'userName');
+    expect(message.id).to.equal(message.score + '-userName');
     expect(message.user).to.equal('userName');
     expect(message.text).to.equal('text');
     expect(message.pending).to.equal(true);

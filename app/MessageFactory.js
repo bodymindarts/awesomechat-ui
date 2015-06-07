@@ -6,7 +6,7 @@ var pending = function(userName, text) {
   var now = new Date();
   var timeStamp = now.toISOString();
   var score = ScoreGenerator.forDate(now);
-  var id = score + userName;
+  var id = score.concat('-', userName);
   return {
     id: id,
     score: score,
