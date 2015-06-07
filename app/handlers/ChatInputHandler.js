@@ -4,8 +4,8 @@ var MessageFactory = require('../MessageFactory');
 
 module.exports = {
   submitMessage: function(userName, text, pendingMessageCursor){
+    var pendingMessage = MessageFactory.pending(userName, text);
     pendingMessageCursor.update(function(messages) {
-      var pendingMessage = MessageFactory.pending(userName, text);
       return messages.concat(pendingMessage);
     });
   }

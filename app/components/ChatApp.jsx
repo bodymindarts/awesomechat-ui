@@ -9,31 +9,24 @@ var ChatInput = require('./ChatInput');
 module.exports = React.createClass({
   mixins: [ImmutableOptimization],
 
-  userNameCursor: function() {
-    return this.props.appState.cursor('userName');
-  },
-  loggedInCursor: function() {
-    return this.props.appState.cursor('loggedIn');
-  },
-  pendingMessagesCursor: function() {
-    return this.props.appState.cursor('pendingMessages');
-  },
-  messageInputCursor: function() {
-    return this.props.appState.cursor('messageInput');
-  },
   render: function(){
+    var userNameCursor = this.props.appState.cursor('userName');
+    var loggedInCursor = this.props.appState.cursor('loggedIn');
+    var pendingMessagesCursor = this.props.appState.cursor('pendingMessages');
+    var messageInputCursor = this.props.appState.cursor('messageInput');
+
     return (
       <div className='chat-app'>
         <h1>Welcome to AwsomeChat</h1>
         <ChatLogin
-          userName={this.userNameCursor()}
-          loggedIn={this.loggedInCursor()} />
-        <ChatScreen pendingMessages={this.pendingMessagesCursor()} />
+          userName={userNameCursor}
+          loggedIn={loggedInCursor} />
+        <ChatScreen pendingMessages={pendingMessagesCursor} />
         <ChatInput
-          pendingMessages={this.pendingMessagesCursor()}
-          messageInput={this.messageInputCursor()}
-          userName={this.userNameCursor().deref()}
-          disabled={!this.loggedInCursor().deref()}/>
+          pendingMessages={pendingMessagesCursor}
+          messageInput={messageInputCursor}
+          userName={userNameCursor}
+          loggedIn={loggedInCursor}/>
       </div>
     );
   }

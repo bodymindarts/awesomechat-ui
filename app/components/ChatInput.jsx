@@ -12,18 +12,21 @@ module.exports = React.createClass({
       return e.target.value;
     });
   },
-  appendMessage: function(e) {
+  submitMessage: function(e) {
     e.preventDefault();
-    var userName = this.props.userName;
+    console.log('sendMessage');
+    var userName = this.props.userName.deref();
     var text = this.props.messageInput.deref();
     var pendingMessages = this.props.pendingMessages;
     ChatInputHandler.submitMessage(userName, text, pendingMessages);
   },
   render: function() {
     return (
-      <form className="chat-input" onSubmit={this.appendMessage} noValidate >
+      <form className="chat-input" onSubmit={this.submitMessage} noValidate >
         <input placeholder='message' onChange={this.inputChanged} />
-        <button type='submit' disabled={this.props.disabled}>Send</button>
+        <button type='submit' disabled={!this.props.loggedIn.deref()} >
+          Send
+        </button>
       </form>
     );
   }
