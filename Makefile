@@ -14,7 +14,7 @@ lint:
 	node $(ESLINT) $(FILES)
 
 test:
-	$(RUNNER) --compilers js:babel/register --recursive --ui bdd --reporter dot $(TESTS)
+	$(RUNNER) --compilers js:babel/register --recursive --require tests/helper.js $(TESTS)
 
 karma:
 	$(KARMA) start
