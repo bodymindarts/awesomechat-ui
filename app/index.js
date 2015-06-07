@@ -1,5 +1,7 @@
 'use strict';
 
+require('./assets/stylesheets/styles.scss')
+
 var React = require('react');
 var ChatApp = require('./components/ChatApp');
 var state = require('./AppState');
