@@ -16,17 +16,19 @@ module.exports = React.createClass({
     e.preventDefault();
     console.log('sendMessage');
     var userName = this.props.userName.deref();
-    var text = this.props.messageInput.deref();
+    var input = this.props.messageInput;
     var pendingMessages = this.props.pendingMessages;
-    ChatInputHandler.submitMessage(userName, text, pendingMessages);
+    ChatInputHandler.submitMessage(userName, input, pendingMessages);
   },
   render: function() {
     return (
       <form className="chat-input" onSubmit={this.submitMessage} noValidate >
-        <input placeholder='message' onChange={this.inputChanged} />
         <button type='submit' disabled={!this.props.loggedIn.deref()} >
           Send
         </button>
+        <input placeholder='message'
+          onChange={this.inputChanged}
+          value={this.props.messageInput.deref()} />
       </form>
     );
   }

@@ -8,7 +8,19 @@ var ChatMessage = require('./ChatMessage');
 module.exports = React.createClass({
   mixins: [ImmutableOptimization],
 
+  componentWillUpdate: function() {
+    var node = this.getDOMNode();
+    var scrollDif = node.scrollTop + node.offsetHeight;
+    this.shouldScrollBottom = scrollDif === node.scrollHeight;
+  },
+  componentDidUpdate: function() {
+    if (this.shouldScrollBottom) {
+      var node = this.getDOMNode();
+      node.scrollTop = node.scrollHeight
+    }
+  },
   renderMessages: function() {
+    var userName = this.props.userName.deref();
     var messages = this.props.pendingMessages.deref();
     // MessageHistory.merge(
     //   this.props.confirmedHistory.deref(),
@@ -17,15 +29,15 @@ module.exports = React.createClass({
 
     return messages.map(function (message) {
       return (
-        <ChatMessage message={message} />
+        <ChatMessage message={message} userName={userName}/>
       );
     });
   },
   render: function() {
     return (
-      <div className='chat-screen'>
+      <ul className='chat-screen'>
         { this.renderMessages() }
-      </div>
+      </ul>
     );
   }
 });

@@ -28,20 +28,20 @@ module.exports = React.createClass({
   },
   renderLogin: function() {
     return (
-      <form className="login-form" onSubmit={this.handleLogin} noValidate >
+      <form className='chat-login' onSubmit={this.handleLogin} noValidate >
+        <button type='submit'>Log In</button>
         <input placeholder='your name'
           value={this.props.userName.deref()}
           onChange={this.inputChanged}
         />
-        <button type='submit'>Log In</button>
       </form>
     );
   },
   renderLogout: function() {
     return (
-      <form className='logout-form' onSubmit={this.handleLogout}>
-        <span>{this.props.userName.deref()}</span>
+      <form className='chat-logout' onSubmit={this.handleLogout}>
         <button type='submit'>Log Out</button>
+        <span>Welcome {this.props.userName.deref()}!</span>
       </form>
     );
   },

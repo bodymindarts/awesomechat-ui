@@ -21,12 +21,15 @@ module.exports = React.createClass({
         <ChatLogin
           userName={userNameCursor}
           loggedIn={loggedInCursor} />
-        <ChatScreen pendingMessages={pendingMessagesCursor} />
+        <ChatScreen
+          pendingMessages={pendingMessagesCursor}
+          userName={userNameCursor}
+        />
         <ChatInput
           pendingMessages={pendingMessagesCursor}
           messageInput={messageInputCursor}
           userName={userNameCursor}
-          loggedIn={loggedInCursor}/>
+          loggedIn={loggedInCursor} />
       </div>
     );
   }

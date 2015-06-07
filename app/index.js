@@ -11,7 +11,7 @@ var state = require('./AppState');
 
 var render = function() {
   React.render(<ChatApp appState={state.cursor()}/>,
-               document.getElementById('app'));
+               document.getElementById('content'));
 };
 
 state.on('swap', function() {

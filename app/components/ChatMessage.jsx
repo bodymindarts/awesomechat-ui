@@ -10,22 +10,21 @@ module.exports = React.createClass({
     var message = this.props.message;
     var messageClasses = 'message';
     if(message.pending) {
-      messageClasses += ' pending';
+      messageClasses += ' message-pending';
+    }
+    console.log(message.user + ' ' + this.props.userName);
+    if(message.user === this.props.userName){
+      messageClasses += ' message-self'
     }
     return (
-      <div className={messageClasses}>
-        <div className='message-info'>
-          <span className='message-author' >
-            {message.user}
-          </span>
-          <span className='message-date' >
-            {message.timeStamp}
-          </span>
-        </div>
+      <li className={messageClasses}>
+        <span className='message-user' >
+          {message.user}
+        </span>
         <span className='message-text' >
           {message.text}
         </span>
-      </div>
+      </li>
     );
   }
 });
