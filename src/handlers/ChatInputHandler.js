@@ -1,12 +1,13 @@
 'use strict';
 
+var MessageHistory = require('../MessageHistory');
 var MessageFactory = require('../MessageFactory');
 
 module.exports = {
   'init': function(appState) {
     var sendAction = appState.reference(['actions', 'send']);
     sendAction.observe('change', function(newVal, oldVal, path) {
-      if(newVal.get('actions').get('send')) {
+      if(sendAction.cursor().deref()) {
         var messageCursor = appState.cursor(['inputs', 'message']);
         var message = messageCursor.deref();
 
@@ -25,8 +26,8 @@ module.exports = {
         var userName = appState.cursor('currentUser').deref();
         var pendingMessage = MessageFactory.pending(userName, message);
         var pendingMessageCursor = appState.cursor(['history', 'pending']);
-        pendingMessageCursor.update(function(messages) {
-          return messages.concat(pendingMessage);
+        pendingMessageCursor.update(function(history) {
+          return MessageHistory.add(history, pendingMessage);
         });
       }
     });
