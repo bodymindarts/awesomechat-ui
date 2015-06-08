@@ -44,9 +44,9 @@ module.exports = React.createClass({
       return (
         <div className='chat-app'>
           <h1>Welcome to AwsomeChat</h1>
-          <ChatLogout action={actions.cursor('logout')} />
           <div className='welcome' >
-            Welcome, <span className='user' >{currentUser}</span>
+            <ChatLogout action={actions.cursor('logout')} />
+            Welcome, <span className='user' >{currentUser}</span>!
           </div>
           <ChatScreen
             history={chatHistory}

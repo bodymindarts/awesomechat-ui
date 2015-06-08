@@ -24,14 +24,16 @@
   border-bottom: 1px solid green;
 }
 
-.chat-logout {
+.welcome {
   button {
     margin-right: 10px;
     margin-left: 10px;
   }
   padding-bottom: 5px;
   border-bottom: 1px solid green;
-  color: blue;
+  .user {
+    color: blue;
+  }
 }
 
 .chat-input {
