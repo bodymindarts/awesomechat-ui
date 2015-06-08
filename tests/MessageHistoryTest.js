@@ -1,5 +1,6 @@
 'use strict';
 
+var Immutable = require('immutable');
 var MessageHistory = require('../src/MessageHistory');
 
 describe('MessageHistory', function() {
@@ -7,33 +8,38 @@ describe('MessageHistory', function() {
   var m1 = { id: '11-id' }
   var m2 = { id: '12-id' }
   var m3 = { id: '13-id' };
-  var messagesOrig = [ m0, m2 ];
-  var messagesOther = [ m1, m3 ];
+  var messagesOne = Immutable.List.of(m0, m2);
+  var messagesOther = Immutable.List.of(m1, m3);
 
   describe('remove', function() {
-    it('can remove a Message from an array', function() {
-      var newMessages = MessageHistory.remove(messagesOrig, m0);
-      expect(newMessages.length).to.equal(1);
-      expect(newMessages[0]).to.equal(m2);
+    it('can remove a Message from a List', function() {
+      var newMessages = MessageHistory.remove(messagesOne, m0);
+      expect(newMessages.size).to.equal(1);
+      expect(newMessages.get(0)).to.equal(m2);
     });
   });
 
   describe('add', function() {
     it('adds a Message respecting the time line', function() {
-      var newMessages = MessageHistory.add(messagesOrig, m1);
-      expect(newMessages.length).to.equal(3);
-      expect(newMessages[1]).to.equal(m1);
+      var newMessages = MessageHistory.add(messagesOne, m1);
+      expect(newMessages.size).to.equal(3);
+      expect(newMessages.get(1)).to.equal(m1);
+    });
+
+    it('does not add a Message already present', function() {
+      var newMessages = MessageHistory.add(messagesOne, m0);
+      expect(newMessages.size).to.equal(2);
     });
   });
 
   describe('merge', function() {
     it('merges two histories respecting time', function() {
-      var newMessages = MessageHistory.merge(messagesOrig, messagesOther);
-      expect(newMessages.length).to.equal(4);
-      expect(newMessages[0]).to.equal(m0);
-      expect(newMessages[1]).to.equal(m1);
-      expect(newMessages[2]).to.equal(m2);
-      expect(newMessages[3]).to.equal(m3);
+      var newMessages = MessageHistory.merge(messagesOne, messagesOther);
+      expect(newMessages.size).to.equal(4);
+      expect(newMessages.get(0)).to.equal(m0);
+      expect(newMessages.get(1)).to.equal(m1);
+      expect(newMessages.get(2)).to.equal(m2);
+      expect(newMessages.get(3)).to.equal(m3);
     });
   });
 });

@@ -1,20 +1,23 @@
 'use strict';
 
+var Immutable = require('immutable');
+
 var compare = function(m1, m2) {
   return m1.id.localeCompare(m2.id);
 };
 
 var indexOfMessage = function(history, message) {
-  for(var index = 0; index < history.length; index++) {
-    if(history[index].id === message.id) {
+  for(var index = 0; index < history.size; index++) {
+    if(history.get(index).id === message.id) {
       return index;
     }
   };
+  return -1;
 };
 
 var indexOfLastMessageBefore = function(history, message) {
-  for(var index = history.length - 1; index >= 0; index--) {
-    if(compare(message, history[index]) < 0) {
+  for(var index = history.size - 1; index >= 0; index--) {
+    if(compare(message, history.get(index)) < 0) {
       return index - 1;
     }
   }
@@ -26,32 +29,37 @@ module.exports = {
     var iConf = 0, iPen = 0;
     var newHistory = [];
     do {
-      if(iConf === confirmed.length) {
-        return newHistory.concat(pending.slice(iPen));
+      if(iConf === confirmed.size) {
+        pending.slice(iPen).forEach(m => newHistory.push(m));
+        return new Immutable.List(newHistory);
       }
-      if(iPen === pending.length) {
-        return newHistory.concat(confirmed.slice(iConf));
+      if(iPen === pending.size) {
+        confirmed.slice(iConf).forEach(m => newHistory.push(m));
+        return new Immutable.List(newHistory);;
       }
 
-      if(compare(confirmed[iConf], pending[iPen]) < 0 ) {
-        newHistory.push(confirmed[iConf]);
+      var compareVal = compare(confirmed.get(iConf), pending.get(iPen));
+      if(compareVal === 0){
+        iPen++;
+      } else if(compareVal < 0 ) {
+        newHistory.push(confirmed.get(iConf));
         iConf++;
       } else {
-        newHistory.push(pending[iPen]);
+        newHistory.push(pending.get(iPen));
         iPen++;
       }
     } while(true);
-    return confirmed.concat(pending);
   },
 
   'add': function(history, message) {
+    if(indexOfMessage(history, message) >= 0) {
+      return history;
+    }
     var index = indexOfLastMessageBefore(history, message);
     if(index < 0){
-      return [ message ].concat(history);
+      return history.unshift(message);
     }
-    var newHistory = history.slice();
-    newHistory.splice(index + 1, 0, message);
-    return newHistory;
+    return history.splice(index + 1, 0, message);
   },
 
   'remove': function(history, message) {
