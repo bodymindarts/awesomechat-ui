@@ -6,6 +6,7 @@
   "dependencies": {
     "ReconnectingWebSocket": "git+https://gith@github.com/joewalnes/reconnecting-websocket.git",
     "immstruct": "^1.4.1",
+    "immutable": "^3.7.3",
     "omniscient": "^3.1.0",
     "react": "^0.13.3"
   },

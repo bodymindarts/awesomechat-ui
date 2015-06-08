@@ -29,6 +29,11 @@
         }
       }
     },
+    "immutable": {
+      "version": "3.7.3",
+      "from": "immutable@*",
+      "resolved": "https://registry.npmjs.org/immutable/-/immutable-3.7.3.tgz"
+    },
     "node-libs-browser": {
       "version": "0.5.2",
       "from": "https://registry.npmjs.org/node-libs-browser/-/node-libs-browser-0.5.2.tgz",
