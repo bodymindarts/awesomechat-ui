@@ -1,7 +1,6 @@
 'use strict';
 
 require('./assets/stylesheets/styles.scss')
-
 var state = require('./AppState');
 
 // var storage = require('./MessageStorage');
@@ -17,12 +16,14 @@ ChatLogoutHandler.init(state);
 var ChatInputHandler = require('./handlers/ChatInputHandler');
 ChatInputHandler.init(state);
 
-// var socket = new WebSocket('ws://localhost:10000/room');
-// var MessageReceiver = require('./MessageReceiver');
-// MessageReceiver.init(stateCursor, socket);
-//
-// var MessageBroadcaster = require('./MessageBroadcaster');
-// MessageBroadcaster.init(stateCursor, socket);
+var ReconnectingWebSocket = require('ReconnectingWebSocket');
+var socket = new ReconnectingWebSocket('ws://localhost:10000');
+
+var MessageReceiver = require('./MessageReceiver');
+MessageReceiver.init(state, socket);
+
+var MessageBroadcaster = require('./MessageBroadcaster');
+MessageBroadcaster.init(state, socket);
 
 var React = require('react');
 var ChatApp = require('./components/ChatApp');
