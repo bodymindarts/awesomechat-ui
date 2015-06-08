@@ -1,6 +1,6 @@
 'use strict';
 
-var ScoreGenerator = require('../app/ScoreGenerator');
+var ScoreGenerator = require('../src/ScoreGenerator');
 
 describe('ScoreGenerator', function() {
   it('generates a score given a date', function() {

@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     app: ['webpack-dev-server/client?http://0.0.0.0:8080',
       'webpack/hot/only-dev-server',
-      './app/index.js']
+      './src/index.js']
   },
   output: {
     path: path.join(__dirname + '/public/'),

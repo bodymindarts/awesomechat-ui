@@ -1,6 +1,6 @@
 'use strict';
 
-var MessageFactory = require('../app/MessageFactory');
+var MessageFactory = require('../src/MessageFactory');
 
 describe('MessageFactory', function() {
   it('can return a pending message', function() {

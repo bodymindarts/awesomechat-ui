@@ -2,7 +2,7 @@
   "name": "awsomechat",
   "version": "0.1.0",
   "description": "simple chat app",
-  "main": "app/index.js",
+  "main": "src/index.js",
   "dependencies": {
     "immstruct": "^1.4.1",
     "omniscient": "^3.1.0",
