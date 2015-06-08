@@ -2,6 +2,11 @@
   "name": "awsomechat",
   "version": "0.1.0",
   "dependencies": {
+    "ReconnectingWebSocket": {
+      "version": "1.0.0",
+      "from": "git+https://gith@github.com/joewalnes/reconnecting-websocket.git",
+      "resolved": "git+https://gith@github.com/joewalnes/reconnecting-websocket.git#5bc6436e5749294010c309026b34073ed0b9ad0b"
+    },
     "immstruct": {
       "version": "1.4.1",
       "from": "https://registry.npmjs.org/immstruct/-/immstruct-1.4.1.tgz",
