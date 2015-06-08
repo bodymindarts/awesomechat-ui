@@ -20,16 +20,10 @@ module.exports = React.createClass({
     }
   },
   renderMessages: function() {
-    var userName = this.props.userName.deref();
-    var messages = this.props.pendingMessages.deref();
-    // MessageHistory.merge(
-    //   this.props.confirmedHistory.deref(),
-    //   this.props.pendingMessages.deref()
-    // );
-
-    return messages.map(function (message) {
+    var currentUser = this.props.currentUser;
+    return this.props.history.map(function (message) {
       return (
-        <ChatMessage message={message} userName={userName}/>
+        <ChatMessage message={message} currentUser={currentUser}/>
       );
     });
   },

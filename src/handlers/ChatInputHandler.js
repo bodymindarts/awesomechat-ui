@@ -3,18 +3,32 @@
 var MessageFactory = require('../MessageFactory');
 
 module.exports = {
-  submitMessage: function(userName, inputCursor, pendingMessageCursor){
-    var text = inputCursor.deref();
-    if(text === '') {
-      return;
-    }
+  'init': function(appState) {
+    var sendAction = appState.reference(['actions', 'send']);
+    sendAction.observe('change', function(newVal, oldVal, path) {
+      if(newVal.get('actions').get('send')) {
+        var messageCursor = appState.cursor(['inputs', 'message']);
+        var message = messageCursor.deref();
 
-    var pendingMessage = MessageFactory.pending(userName, text);
-    pendingMessageCursor.update(function(messages) {
-      return messages.concat(pendingMessage);
-    });
-    inputCursor.update(function(){
-      return '';
+        sendAction.cursor().update(function() {
+          return false;
+        });
+
+        if(message === '') {
+          return;
+        }
+
+        messageCursor.update(function () {
+          return '';
+        });
+
+        var userName = appState.cursor('currentUser').deref();
+        var pendingMessage = MessageFactory.pending(userName, message);
+        var pendingMessageCursor = appState.cursor(['history', 'pending']);
+        pendingMessageCursor.update(function(messages) {
+          return messages.concat(pendingMessage);
+        });
+      }
     });
   }
 };

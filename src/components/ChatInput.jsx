@@ -8,27 +8,26 @@ module.exports = React.createClass({
   mixins: [ImmutableOptimization],
 
   inputChanged: function(e) {
-    this.props.messageInput.update(function() {
+    this.props.input.update(function() {
       return e.target.value;
     });
   },
   submitMessage: function(e) {
     e.preventDefault();
-    console.log('sendMessage');
-    var userName = this.props.userName.deref();
-    var input = this.props.messageInput;
-    var pendingMessages = this.props.pendingMessages;
-    ChatInputHandler.submitMessage(userName, input, pendingMessages);
+    this.props.action.update(function() {
+      console.log('submit');
+      return true;
+    });
   },
   render: function() {
     return (
       <form className="chat-input" onSubmit={this.submitMessage} noValidate >
-        <button type='submit' disabled={!this.props.loggedIn.deref()} >
+        <button type='submit' disabled={this.props.disabled} >
           Send
         </button>
         <input placeholder='message'
           onChange={this.inputChanged}
-          value={this.props.messageInput.deref()} />
+          value={this.props.input.deref()} />
       </form>
     );
   }

@@ -1,11 +1,19 @@
 var immstruct = require('immstruct');
 
 module.exports = immstruct({
-  connected: false,
-  currentRoom: 'default',
   loggedIn: false,
-  userName: '',
-  confirmedHistory: [],
-  pendingMessages: [],
-  messageInput: ''
+  currentUser: '',
+  history: {
+    confirmed: [],
+    pending: []
+  },
+  actions: {
+    login: false,
+    logout: false,
+    send: false
+  },
+  inputs: {
+    message: '',
+    name: ''
+  }
 });

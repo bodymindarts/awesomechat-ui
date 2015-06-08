@@ -2,12 +2,30 @@
 
 require('./assets/stylesheets/styles.scss')
 
-var React = require('react');
-var ChatApp = require('./components/ChatApp');
 var state = require('./AppState');
 
-// StateHandler.restoreState(require('./AppState'))
-// var Storage = require('./MessageStorage');
+// var storage = require('./MessageStorage');
+// var StorageSyncer = require('./StorageSyncer');
+// StorageSyncer.init(state, storage);
+
+var ChatLoginHandler = require('./handlers/ChatLoginHandler');
+ChatLoginHandler.init(state);
+
+var ChatLogoutHandler = require('./handlers/ChatLogoutHandler');
+ChatLogoutHandler.init(state);
+
+var ChatInputHandler = require('./handlers/ChatInputHandler');
+ChatInputHandler.init(state);
+
+// var socket = new WebSocket('ws://localhost:10000/room');
+// var MessageReceiver = require('./MessageReceiver');
+// MessageReceiver.init(stateCursor, socket);
+//
+// var MessageBroadcaster = require('./MessageBroadcaster');
+// MessageBroadcaster.init(stateCursor, socket);
+
+var React = require('react');
+var ChatApp = require('./components/ChatApp');
 
 var render = function() {
   React.render(<ChatApp appState={state.cursor()}/>,
@@ -21,7 +39,6 @@ state.on('swap', function() {
 render();
 
 
-// var socket = new WebSocket('ws://localhost:10000/room');
 
 // socket.onopen = function(event) {
 
