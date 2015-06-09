@@ -5,10 +5,7 @@ var state = require('./AppState');
 
 var storage = require('./Storage');
 var StateSyncer = require('./StateSyncer');
-console.log('state:\n', JSON.stringify(state.cursor().deref()));
 StateSyncer.init(state, storage);
-
-console.log('state:\n', JSON.stringify(state.cursor().deref()));
 
 var ChatLoginHandler = require('./handlers/ChatLoginHandler');
 ChatLoginHandler.init(state);
@@ -40,7 +37,6 @@ var render = function() {
                document.getElementById('content'));
 };
 
-console.log('state:\n', JSON.stringify(state.cursor().deref()));
 state.on('swap', function() {
   render();
 });
