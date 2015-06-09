@@ -7,16 +7,14 @@ module.exports = React.createClass({
   mixins: [ImmutableOptimization],
 
   inputChanged: function(e) {
-    this.props.input.update(function() {
-      return e.target.value;
-    });
+    this.props.input.update(() => e.target.value);
   },
+
   handleLogin: function(e) {
     e.preventDefault();
-    this.props.action.update(function() {
-      return true;
-    });
+    this.props.action.update(() => true);
   },
+
   render: function() {
     return (
       <form className='chat-login' onSubmit={this.handleLogin} noValidate >

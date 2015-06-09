@@ -2,6 +2,7 @@
 
 module.exports = {
   'init': function(appState, socket) {
+
     var pendingMessages = appState.reference(['history', 'pending']);
 
     socket.onopen = function() {

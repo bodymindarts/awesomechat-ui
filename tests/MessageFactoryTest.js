@@ -3,7 +3,9 @@
 var MessageFactory = require('../src/MessageFactory');
 
 describe('MessageFactory', function() {
+
   it('can return a pending message', function() {
+
     var timeStamp = new Date();
     var message = MessageFactory.pending('userName', 'text');
 

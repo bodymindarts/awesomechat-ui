@@ -3,6 +3,7 @@
 var Immutable = require('immutable');
 
 var initialize = function(state, storage) {
+
   var user = storage.readLoggedInUser();
   var history = storage.readHistory();
 
@@ -21,10 +22,12 @@ var initialize = function(state, storage) {
 
 module.exports = {
   'init': function(state, storage) {
+
     initialize(state, storage);
 
     var currentUser = state.reference('currentUser');
-    currentUser.observe('change', () => {
+    currentUser.observe('change', function() {
+
       var name = currentUser.cursor().deref();
       if(name !== '') {
         storage.writeLoggedInUser(name);
@@ -34,7 +37,7 @@ module.exports = {
     });
 
     var history = state.reference('history');
-    history.observe('change', () => {
+    history.observe('change', function() {
       storage.writeHistory(history.cursor().deref());
     });
   }

@@ -23,6 +23,7 @@ module.exports = {
         var userName = appState.cursor('currentUser').deref();
         var newMessage = MessageFactory.pending(userName, message);
         var pendingMessageCursor = appState.cursor(['history', 'pending']);
+
         pendingMessageCursor.
           update((history) => MessageHistory.add(history, newMessage));
       }

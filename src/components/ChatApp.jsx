@@ -12,13 +12,14 @@ module.exports = React.createClass({
   mixins: [ImmutableOptimization],
 
   render: function(){
+
     var inputs = this.props.appState.cursor('inputs');
     var actions = this.props.appState.cursor('actions');
     var loggedIn = this.props.appState.cursor('loggedIn').deref();
     var currentUser = this.props.appState.cursor('currentUser').deref();
 
-    var confirmed = this.props.appState.cursor(
-      ['history', 'confirmed']).deref();
+    var confirmed = this.props.appState.
+      cursor(['history', 'confirmed']).deref();
     var pending = this.props.appState.cursor(['history', 'pending']).deref();
     var chatHistory = MessageHistory.merge(confirmed, pending);
 

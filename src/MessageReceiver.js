@@ -5,6 +5,7 @@ var MessageHistory = require('./MessageHistory');
 
 module.exports = {
   'init': function(state, socket) {
+
     socket.onmessage = function(event) {
 
       var message = JSON.parse(event.data);
@@ -13,8 +14,8 @@ module.exports = {
       var pending = state.cursor(['history', 'pending']);
 
       if(typeof message.id !== 'undefined') {
-        confirmed.update((confirmed) => MessageHistory.add(confirmed, message));
-        pending.update((pending) => MessageHistory.remove(pending, message));
+        confirmed.update((current) => MessageHistory.add(current, message));
+        pending.update((current) => MessageHistory.remove(current, message));
       } else {
         confirmed.update(() => new Immutable.List(message));
       }
