@@ -1,6 +1,6 @@
 'use strict';
 
-var MessageFactory = require('../src/MessageFactory');
+var MessageFactory = require('../../src/domain/MessageFactory');
 
 describe('MessageFactory', function() {
 

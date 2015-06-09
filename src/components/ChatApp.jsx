@@ -6,7 +6,7 @@ var ChatScreen = require('./ChatScreen');
 var ChatLogin = require('./ChatLogin');
 var ChatLogout = require('./ChatLogout');
 var ChatInput = require('./ChatInput');
-var MessageHistory = require('../MessageHistory');
+var MessageHistory = require('../domain/MessageHistory');
 
 module.exports = React.createClass({
   mixins: [ImmutableOptimization],

@@ -1,7 +1,7 @@
 'use strict';
 
 var Immutable = require('immutable');
-var MessageHistory = require('../src/MessageHistory');
+var MessageHistory = require('../../src/domain/MessageHistory');
 
 describe('MessageHistory', function() {
 

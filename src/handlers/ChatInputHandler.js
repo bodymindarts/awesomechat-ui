@@ -1,7 +1,7 @@
 'use strict';
 
-var MessageHistory = require('../MessageHistory');
-var MessageFactory = require('../MessageFactory');
+var MessageHistory = require('../domain/MessageHistory');
+var MessageFactory = require('../domain/MessageFactory');
 
 module.exports = {
   'init': function(appState) {

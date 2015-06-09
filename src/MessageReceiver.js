@@ -1,7 +1,7 @@
 'use strict';
 
 var Immutable = require('immutable');
-var MessageHistory = require('./MessageHistory');
+var MessageHistory = require('./domain/MessageHistory');
 
 module.exports = {
   'init': function(state, socket) {
