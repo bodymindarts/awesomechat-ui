@@ -4,6 +4,8 @@ This is the client for the AwesomeChat chat application. It was developed and te
 ## Setup
 `git clone https://github.com/bodymindarts/awesomechat-client.git`
 
+`cd awsomechat-client`
+
 `make install`
 
 Run tests
