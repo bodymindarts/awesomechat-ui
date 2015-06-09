@@ -1,5 +1,5 @@
 {
-  "name": "awsomechat",
+  "name": "awesomechat",
   "version": "0.1.0",
   "dependencies": {
     "ReconnectingWebSocket": {
