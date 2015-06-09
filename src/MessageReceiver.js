@@ -19,9 +19,7 @@ module.exports = {
         confirmed.update((current) => MessageHistory.add(current, message));
         pending.update((current) => MessageHistory.remove(current, message));
       } else {
-        confirmed.update((old) => {
-          return MessageHistory.merge(new Immutable.List(message), old);
-        });
+        confirmed.update((old) => new Immutable.List(message));
       }
     };
   }
