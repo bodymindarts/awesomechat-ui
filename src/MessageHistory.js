@@ -11,7 +11,7 @@ var indexOfMessage = function(history, message) {
     if(history.get(index).id === message.id) {
       return index;
     }
-  };
+  }
   return -1;
 };
 
@@ -28,14 +28,15 @@ module.exports = {
   'merge': function(confirmed, pending) {
     var iConf = 0, iPen = 0;
     var newHistory = [];
-    do {
+
+    for(;;) {
       if(iConf === confirmed.size) {
-        pending.slice(iPen).forEach(m => newHistory.push(m));
+        newHistory.push.apply(newHistory, pending.slice(iPen).toArray());
         return new Immutable.List(newHistory);
       }
       if(iPen === pending.size) {
-        confirmed.slice(iConf).forEach(m => newHistory.push(m));
-        return new Immutable.List(newHistory);;
+        newHistory.push.apply(newHistory, confirmed.slice(iConf).toArray());
+        return new Immutable.List(newHistory);
       }
 
       var compareVal = compare(confirmed.get(iConf), pending.get(iPen));
@@ -48,7 +49,7 @@ module.exports = {
         newHistory.push(pending.get(iPen));
         iPen++;
       }
-    } while(true);
+    }
   },
 
   'add': function(history, message) {

@@ -1,6 +1,6 @@
 'use strict';
 
-require('./assets/stylesheets/styles.scss')
+require('./assets/stylesheets/styles.scss');
 var state = require('./AppState');
 
 var storage = require('./Storage');

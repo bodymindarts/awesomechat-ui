@@ -2,7 +2,6 @@
 
 var ImmutableOptimization = require('../mixins/ImmutableOptimization');
 var React = require('react');
-// var MessageHistory = require('../MessageHistory');
 var ChatMessage = require('./ChatMessage');
 
 module.exports = React.createClass({
@@ -16,7 +15,7 @@ module.exports = React.createClass({
   componentDidUpdate: function() {
     if (this.shouldScrollBottom) {
       var node = this.getDOMNode();
-      node.scrollTop = node.scrollHeight
+      node.scrollTop = node.scrollHeight;
     }
   },
   renderMessages: function() {

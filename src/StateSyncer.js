@@ -1,7 +1,6 @@
 'use strict';
 
 var Immutable = require('immutable');
-var AppState = require('./AppState');
 
 var initialize = function(state, storage) {
   var user = storage.readLoggedInUser();
@@ -28,7 +27,7 @@ module.exports = {
     currentUser.observe('change', () => {
       var name = currentUser.cursor().deref();
       if(name !== '') {
-        storage.writeLoggedInUser(name)
+        storage.writeLoggedInUser(name);
       } else {
         storage.removeLoggedInUser();
       }

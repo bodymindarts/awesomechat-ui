@@ -7,6 +7,9 @@
     node: true,
     mocha: true
   },
+  globals: {
+    expect: true
+  },
   parser: "babel-eslint",
   rules: {
     quotes: [2, 'single'],

@@ -2,23 +2,19 @@
 
 var ImmutableOptimization = require('../mixins/ImmutableOptimization');
 var React = require('react');
-var ChatInputHandler = require('../handlers/ChatInputHandler');
 
 module.exports = React.createClass({
   mixins: [ImmutableOptimization],
 
   inputChanged: function(e) {
-    this.props.input.update(function() {
-      return e.target.value;
-    });
+    this.props.input.update(() => e.target.value);
   },
+
   submitMessage: function(e) {
     e.preventDefault();
-    this.props.action.update(function() {
-      console.log('submit');
-      return true;
-    });
+    this.props.action.update(() => true);
   },
+
   render: function() {
     return (
       <form className="chat-input" onSubmit={this.submitMessage} noValidate >

@@ -5,18 +5,14 @@ module.exports = {
     var pendingMessages = appState.reference(['history', 'pending']);
 
     socket.onopen = function() {
-      pendingMessages.cursor().deref().forEach(function(message) {
-        console.log('SENDING open: '.concat(JSON.stringify(message)));
-        socket.send(JSON.stringify(message));
-      });
+      pendingMessages.cursor().deref().
+        forEach((message) => socket.send(JSON.stringify(message)));
     };
 
-    pendingMessages.observe('change', function(newVal, oldVal, path) {
+    pendingMessages.observe('change', function() {
       if(socket.readyState === WebSocket.OPEN) {
-        pendingMessages.cursor().deref().forEach(function(message) {
-          console.log('SENDING ready: '.concat(JSON.stringify(message)));
-          socket.send(JSON.stringify(message));
-        });
+        pendingMessages.cursor().deref().
+          forEach((message) => socket.send(JSON.stringify(message)));
       }
     });
   }

@@ -1,11 +1,9 @@
 'use strict';
 
-var Immutable = require('immutable');
-
 module.exports = {
   'init': function(appState) {
     var loginAction = appState.reference(['actions', 'login']);
-    loginAction.observe('change', function(newVal, oldVal, path) {
+    loginAction.observe('change', function() {
         console.log('login');
       if(loginAction.cursor().deref()) {
         loginAction.cursor().update(() => false );

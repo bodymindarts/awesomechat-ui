@@ -18,5 +18,5 @@ var pending = function(userName, text) {
 };
 
 module.exports = {
-  'pending': pending,
+  'pending': pending
 };

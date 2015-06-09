@@ -13,7 +13,7 @@ module.exports = React.createClass({
       messageClasses += ' message-pending';
     }
     if(message.user === this.props.currentUser){
-      messageClasses += ' message-self'
+      messageClasses += ' message-self';
     }
     return (
       <li className={messageClasses}>

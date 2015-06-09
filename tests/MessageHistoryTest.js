@@ -5,8 +5,8 @@ var MessageHistory = require('../src/MessageHistory');
 
 describe('MessageHistory', function() {
   var m0 = { id: '10-id' };
-  var m1 = { id: '11-id' }
-  var m2 = { id: '12-id' }
+  var m1 = { id: '11-id' };
+  var m2 = { id: '12-id' };
   var m3 = { id: '13-id' };
   var messagesOne = Immutable.List.of(m0, m2);
   var messagesOther = Immutable.List.of(m1, m3);
