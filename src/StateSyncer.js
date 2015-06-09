@@ -3,18 +3,6 @@
 var Immutable = require('immutable');
 var AppState = require('./AppState');
 
-var historyChanged = function(state, storage) {
-  console.log('updating history');
-
-  var serializeableHistory = {
-    pending: state.cursor(['history', 'pending']).deref().toArray(),
-    confirmed: state.cursor(['history', 'confirmed']).deref().toArray()
-  };
-
-  storage.writeHistory(serializeableHistory);
-  console.log('done');
-};
-
 var initialize = function(state, storage) {
   var user = storage.readLoggedInUser();
   var history = storage.readHistory();
@@ -47,6 +35,8 @@ module.exports = {
     });
 
     var history = state.reference('history');
-    history.observe('change', () => historyChanged(state, storage));
+    history.observe('change', () => {
+      storage.writeHistory(history.cursor().deref());
+    });
   }
 };
