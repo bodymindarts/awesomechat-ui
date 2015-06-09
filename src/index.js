@@ -3,9 +3,12 @@
 require('./assets/stylesheets/styles.scss')
 var state = require('./AppState');
 
-// var storage = require('./MessageStorage');
-// var StorageSyncer = require('./StorageSyncer');
-// StorageSyncer.init(state, storage);
+var storage = require('./Storage');
+var StateSyncer = require('./StateSyncer');
+console.log('state:\n', JSON.stringify(state.cursor().deref()));
+StateSyncer.init(state, storage);
+
+console.log('state:\n', JSON.stringify(state.cursor().deref()));
 
 var ChatLoginHandler = require('./handlers/ChatLoginHandler');
 ChatLoginHandler.init(state);
@@ -17,7 +20,11 @@ var ChatInputHandler = require('./handlers/ChatInputHandler');
 ChatInputHandler.init(state);
 
 var ReconnectingWebSocket = require('ReconnectingWebSocket');
-var socket = new ReconnectingWebSocket('ws://localhost:10000');
+var socket = new ReconnectingWebSocket(
+  'ws://localhost:10000',
+  null,
+  { reconnectInterval: 500, reconnectDecay: 1.1 }
+);
 
 var MessageReceiver = require('./MessageReceiver');
 MessageReceiver.init(state, socket);
@@ -33,28 +40,9 @@ var render = function() {
                document.getElementById('content'));
 };
 
+console.log('state:\n', JSON.stringify(state.cursor().deref()));
 state.on('swap', function() {
   render();
 });
 
 render();
-
-
-
-// socket.onopen = function(event) {
-
-//   // Send an initial message
-//   socket.send('I am the client and I\'m listening!');
-
-//   // Listen for messages
-//   socket.onmessage = function(event) {
-//     console.log('Client received a message',event);
-//   };
-
-//   // Listen for socket closes
-//   socket.onclose = function(event) {
-//     console.log('Client notified socket has closed',event);
-//   };
-
-//   // socket.close()
-// };

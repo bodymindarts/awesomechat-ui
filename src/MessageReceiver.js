@@ -1,25 +1,26 @@
 'use strict';
 
+var Immutable = require('immutable');
 var MessageHistory = require('./MessageHistory');
 
 module.exports = {
   'init': function(state, socket) {
-    socket.onmessage = function(raw) {
+    socket.onmessage = function(event) {
       console.log('MESSAGE RECEIVED ', event);
       var message = JSON.parse(event.data);
+      console.log('message: ', message);
 
-      if(message.text !== 'undefined') {
         var confirmed = state.cursor(['history', 'confirmed']);
         var pending = state.cursor(['history', 'pending']);
 
-        confirmed.update(function(current) {
-          return MessageHistory.add(current, message);
-        });
-
-        pending.update(function(current) {
-          console.log('updating pending to: '.
-                      concat(MessageHistory.remove(current, message)));
-          return MessageHistory.remove(current, message);
+        console.log(typeof message);
+        console.log(message.id);
+      if(typeof message.id !== 'undefined') {
+        confirmed.update((current) => MessageHistory.add(current, message));
+        pending.update((current) => MessageHistory.remove(current, message));
+      } else {
+        confirmed.update((old) => {
+          return MessageHistory.merge(new Immutable.List(message), old);
         });
       }
     };

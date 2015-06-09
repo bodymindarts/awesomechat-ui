@@ -21,8 +21,8 @@ describe('MessageHistory', function() {
 
   describe('add', function() {
     it('adds a Message respecting the time line', function() {
-      var newMessages = MessageHistory.add(messagesOne, m1);
-      expect(newMessages.size).to.equal(3);
+      var newMessages = MessageHistory.add(messagesOne.push(m3), m1);
+      expect(newMessages.size).to.equal(4);
       expect(newMessages.get(1)).to.equal(m1);
     });
 

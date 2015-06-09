@@ -17,8 +17,8 @@ var indexOfMessage = function(history, message) {
 
 var indexOfLastMessageBefore = function(history, message) {
   for(var index = history.size - 1; index >= 0; index--) {
-    if(compare(message, history.get(index)) < 0) {
-      return index - 1;
+    if(compare(history.get(index), message) < 0) {
+      return index;
     }
   }
   return -1;

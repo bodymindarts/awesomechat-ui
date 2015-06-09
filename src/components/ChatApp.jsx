@@ -25,7 +25,7 @@ module.exports = React.createClass({
     if(!loggedIn) {
       return (
         <div className='chat-app'>
-          <h1>Welcome to AwsomeChat</h1>
+          <h1>Welcome to AwesomeChat</h1>
           <ChatLogin
             action={actions.cursor('login')}
             input={inputs.cursor('name')} />
@@ -43,7 +43,7 @@ module.exports = React.createClass({
     } else {
       return (
         <div className='chat-app'>
-          <h1>Welcome to AwsomeChat</h1>
+          <h1>Welcome to AwesomeChat</h1>
           <div className='welcome' >
             <ChatLogout action={actions.cursor('logout')} />
             Welcome, <span className='user' >{currentUser}</span>!
