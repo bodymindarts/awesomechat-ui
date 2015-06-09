@@ -9,14 +9,18 @@ describe('ScoreGenerator', function() {
     var year = 2000;
     var month = 11;
     var day = 2;
-    var secondsTotal = 33333;
+    var millisecondsTotal = 33333333;
+    var secondsTotal = Math.floor(millisecondsTotal / 1000);
 
     var hours = Math.floor(secondsTotal / 3600);
     var minutes = Math.floor((secondsTotal - hours * 3600) / 60);
     var seconds = (secondsTotal - hours * 3600 - minutes * 60 );
+    var milliSeconds = millisecondsTotal - secondsTotal * 1000;
 
-    var date = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+    var utcDate = Date.
+      UTC(year, month, day, hours, minutes, seconds, milliSeconds);
+    var date = new Date(utcDate);
 
-    expect(ScoreGenerator.forDate(date)).to.equal('2000110233333');
+    expect(ScoreGenerator.forDate(date)).to.equal('2000110233333333');
   });
 });

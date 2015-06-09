@@ -13,15 +13,16 @@ var addZero = function(number) {
 module.exports = {
   'forDate': function(date) {
 
-    var totalSeconds = date.getUTCHours() * 3600 +
-      date.getUTCMinutes() * 60 +
-      date.getUTCSeconds();
+    var totalMilliseconds = date.getUTCHours() * 3600 * 1000 +
+      date.getUTCMinutes() * 60 * 1000 +
+      date.getUTCSeconds() * 1000 +
+      date.getUTCMilliseconds();
 
     return ''.concat(
       date.getUTCFullYear(),
       addZero(date.getUTCMonth()),
       addZero(date.getUTCDate()),
-      totalSeconds
+      totalMilliseconds
     );
   }
 };
