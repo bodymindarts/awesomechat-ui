@@ -1,12 +1,15 @@
 'use strict';
 
-var addZero = function(number) {
+var fillDigits = function(number, n) {
 
-  if(number < 10){
-    return '0' + number;
-  } else {
-    return number.toString();
+  var nZeros = 0;
+  var zeros = '';
+  while(number * Math.pow(10, nZeros) < Math.pow(10, n - 1)){
+    nZeros += 1;
+    zeros = zeros.concat('0');
   }
+
+  return zeros.concat(number);
 };
 
 
@@ -20,9 +23,9 @@ module.exports = {
 
     return ''.concat(
       date.getUTCFullYear(),
-      addZero(date.getUTCMonth()),
-      addZero(date.getUTCDate()),
-      totalMilliseconds
+      fillDigits(date.getUTCMonth(), 2),
+      fillDigits(date.getUTCDate(), 2),
+      fillDigits(totalMilliseconds, 8)
     );
   }
 };

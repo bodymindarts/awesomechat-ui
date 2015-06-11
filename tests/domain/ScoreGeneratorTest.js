@@ -22,5 +22,11 @@ describe('ScoreGenerator', function() {
     var date = new Date(utcDate);
 
     expect(ScoreGenerator.forDate(date)).to.equal('2000110233333333');
+
+    utcDate = Date.
+      UTC(year, month, day, 0, 0, 0, 1);
+    date = new Date(utcDate);
+
+    expect(ScoreGenerator.forDate(date)).to.equal('2000110200000001');
   });
 });
