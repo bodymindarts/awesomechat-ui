@@ -17,7 +17,7 @@
     "babel-loader": "^5.1.4",
     "chai": "^3.0.0",
     "css-loader": "^0.14.4",
-    "eslint": "^0.22.1",
+    "eslint": "^7.4.0",
     "eslint-plugin-react": "^2.5.0",
     "json-loader": "^0.5.2",
     "jsx-loader": "^0.13.2",
